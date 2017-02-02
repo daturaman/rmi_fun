@@ -63,8 +63,8 @@ public class RmiServerImpl extends UnicastRemoteObject implements RmiServer {
 		try {
 			for (String name : Naming.list("//localhost/RmiServer")) {
 				RmiServer obj = (RmiServer) Naming.lookup(name);
-				if(obj.get(key) == null) {
-					obj.put(key, value);
+				if(obj.get(key) != null) {
+					obj.remove(key);
 				}
 			}
 		} catch (MalformedURLException | NotBoundException e) {

@@ -2,6 +2,7 @@ package rmiserver;
 
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.CoreMatchers.is;
+import static org.hamcrest.CoreMatchers.nullValue;
 import static org.junit.Assert.assertThat;
 
 import java.io.IOException;
@@ -81,10 +82,11 @@ public class DistributedMultiServerStorageTest {
 	}
 
 	@Test
-	public void deletingEntryFromOneNodeIsProgagatedToAllOtherNodes(){
-		//testServers[0].
+	public void deletingEntryFromOneNodeIsProgagatedToAllOtherNodes() throws RemoteException {
+		testServers[0].remove("USA");
+		assertThat(testServers[0].get("USA"), is(nullValue()));
+		assertThat(testServers[1].get("USA"), is(nullValue()));
+		assertThat(testServers[2].get("USA"), is(nullValue()));
 	}
-
-	//TODO test failover
 }
 
