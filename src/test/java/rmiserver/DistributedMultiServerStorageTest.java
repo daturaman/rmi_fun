@@ -30,7 +30,6 @@ public class DistributedMultiServerStorageTest {
 
 	private static final int SERVER_COUNT = 3;
 	private RmiServer [] testServers;
-
 	private final List<Map.Entry<String, String>> testEntries;
 
 	{
@@ -83,6 +82,9 @@ public class DistributedMultiServerStorageTest {
 
 	@Test
 	public void deletingEntryFromOneNodeIsProgagatedToAllOtherNodes() throws RemoteException {
+		assertThat(testServers[0].get("USA"), is(equalTo("Washington DC")));
+		assertThat(testServers[1].get("USA"), is(equalTo("Washington DC")));
+		assertThat(testServers[2].get("USA"), is(equalTo("Washington DC")));
 		testServers[0].remove("USA");
 		assertThat(testServers[0].get("USA"), is(nullValue()));
 		assertThat(testServers[1].get("USA"), is(nullValue()));

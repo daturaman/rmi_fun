@@ -21,7 +21,7 @@ public class RmiServerImpl extends UnicastRemoteObject implements RmiServer {
 
 	private Map<String, String> map = new ConcurrentHashMap<>();
 	private boolean started = false;
-	private static final String MESSAGE = "Oh shit, I'm, using RMI.";
+	private static final String MESSAGE = "RmiServer";
 	private UUID id = UUID.randomUUID();
 
 	public RmiServerImpl() throws RemoteException {
