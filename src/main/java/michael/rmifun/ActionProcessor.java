@@ -1,10 +1,3 @@
-/*
- * <copyright>
- *
- * Copyright (c) 2010-2017 Gresham Technologies plc. All rights reserved.
- *
- * </copyright>
- */
 package michael.rmifun;
 
 import java.util.concurrent.ConcurrentMap;

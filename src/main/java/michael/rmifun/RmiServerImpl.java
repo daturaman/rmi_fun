@@ -108,4 +108,17 @@ public class RmiServerImpl extends UnicastRemoteObject implements RmiServer {
 	public static void main(String args[]) throws Exception {
 		new RmiServerImpl().start();
 	}
+
+	private void propagateToOtherNodes(String key) throws RemoteException {
+		try {
+			for (String name : Naming.list("//localhost/RmiServer")) {
+				RmiServer obj = (RmiServer) Naming.lookup(name);
+				if(obj.get(key) != null) {
+
+				}
+			}
+		} catch (MalformedURLException | NotBoundException e) {
+			e.printStackTrace();
+		}
+	}
 }
